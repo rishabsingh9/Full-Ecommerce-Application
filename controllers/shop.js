@@ -39,6 +39,8 @@ exports.getProduct = (req, res, next) => {
 
 exports.getIndex = (req, res, next) => {
   Product.find()
+  // .select('title price -_id')
+  // .populate('userId','name')
     .then(products => {
       res.render('shop/index', {
         prods: products,

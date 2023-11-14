@@ -17,7 +17,7 @@ exports.postAddProduct = (req, res, next) => {
   const description = req.body.description;
  
     
-  const product=new Product({title:title,price:price,description:description,imageUrl:imageUrl});
+  const product=new Product({title:title,price:price,description:description,imageUrl:imageUrl,userId:req.user});
   product.save()
     .then(result => {
        console.log(result);
@@ -75,7 +75,7 @@ exports.postEditProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then(products => {
       res.render('admin/products', {
         prods: products,
